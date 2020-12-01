@@ -54,7 +54,9 @@ class AoCFileReaderTest {
   @Test
   void getInputDataAsIntegerList_shouldBeTrue() {
 
-    Integer[] expected = new Integer[] {1, 2, 3};
+    Integer[] expected = new Integer[] {1, 2, 3, 4, 5, 6};
+
+    int data = 1;
 
     Assertions.assertArrayEquals(expected, simpleDelimitedFileReader.getInPutDataAsIntegerArray());
 

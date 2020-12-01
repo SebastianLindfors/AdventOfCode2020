@@ -35,21 +35,21 @@ public @Data class AoCFileReader {
 
   //region <Methods>
 
-  char[] getInputDataAsCharArray() {
+  public char[] getInputDataAsCharArray() {
     return fileData.toCharArray();
   }
 
-  String[] getInputDataAsLineArray() {
+  public String[] getInputDataAsLineArray() {
     return fileData.split("\\r?\\n");
   }
 
-  String[] getInputDataAsDelimitedArray(String delimiter) {
+  public String[] getInputDataAsDelimitedArray(String delimiter) {
     return fileData.split(delimiter);
   }
 
-  Integer[] getInPutDataAsIntegerArray() {
+  public Integer[] getInPutDataAsIntegerArray() {
 
-    String[] intStrings = fileData.split(",");
+    String[] intStrings = fileData.split("[\\r\\n,]+");
     Integer[] intInts = new Integer[intStrings.length];
 
     for (int i = 0; i < intStrings.length; i++) {
