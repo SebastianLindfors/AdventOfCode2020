@@ -19,15 +19,20 @@ public class AdventOfCode2020 extends Application {
   public void start(Stage primaryStage) {
     primaryStage.setTitle("Advent Of Code 2020!");
 
-    Button day1Task1 = new Button();
-    day1Task1.setText("Day 1");
-    day1Task1.setOnAction(event -> System.out.println("Hello World!"));
+    Button day1Task = new Button();
+    day1Task.setText("Day 1: Report Repair");
+    day1Task.setOnAction(event -> System.out.println("\"Day 1: Report Repair"));
+
+    Button day2Task = new Button();
+    day2Task.setText("Day 2: Password Philosophy");
+    day2Task.setOnAction(event -> System.out.println("\"Day 2: Password Philosophy"));
 
 
 
 
     StackPane root = new StackPane();
-    root.getChildren().add(day1Task1);
+    root.getChildren().add(day1Task);
+    root.getChildren().add(day2Task);
     primaryStage.setScene(new Scene(root, 300, 250));
     primaryStage.show();
   }

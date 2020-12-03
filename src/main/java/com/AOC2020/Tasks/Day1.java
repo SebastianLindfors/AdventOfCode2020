@@ -8,10 +8,6 @@ public @Data class Day1 extends AoCChallenge{
 
   private int task1Solution, task2Solution;
 
-  public Day1() {
-    super();
-  }
-
   public Day1(String overrideFileName) {
     super(overrideFileName);
   }

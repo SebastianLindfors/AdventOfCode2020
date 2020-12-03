@@ -9,22 +9,7 @@ public abstract @Data class AoCChallenge {
 
   protected long[][] timing = new long[2][3];
 
-  public AoCChallenge() {
-
-    fileReader = new AoCFileReader("Day1Data.txt");
-
-    timing[0][0] = System.nanoTime();
-    computeSolutionToTask1();
-    timing[0][1] = System.nanoTime();
-    timing[0][2] = timing[0][1] - timing[0][0];
-    System.out.println("Time taken to compute solution 1: " + timing[0][2]/1000 + " ms");
-
-    timing[1][0] = System.nanoTime();
-    computeSolutionToTask2();
-    timing[1][1] = System.nanoTime();
-    timing[1][2] = timing[1][1] - timing[1][0];
-    System.out.println("Time taken to compute solution 2: " + timing[0][2]/1000 + " ms");
-  }
+  public AoCChallenge() {}; //For Lombok
 
   public AoCChallenge(String overrideFileName) {
 
