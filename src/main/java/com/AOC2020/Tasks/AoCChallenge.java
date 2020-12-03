@@ -5,6 +5,8 @@ import lombok.Data;
 
 public abstract @Data class AoCChallenge {
 
+  private int task1Solution, task2Solution;
+
   protected AoCFileReader fileReader;
 
   protected long[][] timing = new long[2][3];
