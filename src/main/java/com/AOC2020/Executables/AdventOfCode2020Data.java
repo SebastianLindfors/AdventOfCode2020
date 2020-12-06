@@ -1,15 +1,12 @@
 package com.AOC2020.Executables;
 
-import com.AOC2020.Tasks.AoCChallenge;
-import com.AOC2020.Tasks.Day1;
-import com.AOC2020.Tasks.Day2;
-import com.AOC2020.Tasks.Day3;
+import com.AOC2020.Tasks.*;
 
 public class AdventOfCode2020Data {
 
   public static void main(String args[]) {
 
-    int dayToCompute = 3;
+    int dayToCompute = 5;
 
     AoCChallenge day;
 
@@ -26,6 +23,16 @@ public class AdventOfCode2020Data {
         break;
       case 3:
         day = new Day3("Day3Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + day.getTask2Solution());
+        break;
+      case 4:
+        day = new Day4("Day4Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + day.getTask2Solution());
+        break;
+      case 5:
+        day = new Day5("Day5Data.txt");
         System.out.println("Solution to task 1: " + day.getTask1Solution());
         System.out.println("Solution to task 2: " + day.getTask2Solution());
         break;
