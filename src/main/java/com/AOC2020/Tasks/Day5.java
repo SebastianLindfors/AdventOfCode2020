@@ -11,15 +11,15 @@ public @Data class Day5 extends AoCChallenge {
   private int task1Solution, task2Solution;
 
   public Day5(String overrideFileName) {
-    super(overrideFileName);
-  }
+      super(overrideFileName);
+    }
 
   public Day5(String overrideFileName, boolean oneNotTwo) {
-    super(overrideFileName, oneNotTwo);
-  }
+      super(overrideFileName, oneNotTwo);
+    }
 
-  @Override
-  protected void computeSolutionToTask1() {
+    @Override
+    protected void computeSolutionToTask1() {
 
     int maxSeatId = Integer.MIN_VALUE;
 
