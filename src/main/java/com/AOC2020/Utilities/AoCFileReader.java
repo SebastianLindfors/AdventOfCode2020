@@ -60,6 +60,19 @@ public @Data class AoCFileReader {
 
   }
 
+  public Long[] getInPutDataAsLongArray() {
+
+    String[] longStrings = fileData.split("[\\r\\n,]+");
+    Long[] longLongs = new Long[longStrings.length];
+
+    for (int i = 0; i < longStrings.length; i++) {
+      longLongs[i] = Long.parseLong(longStrings[i]);
+    }
+
+    return longLongs;
+
+  }
+
 
 
   //endregion
