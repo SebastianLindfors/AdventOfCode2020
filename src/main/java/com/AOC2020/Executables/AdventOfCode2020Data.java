@@ -6,7 +6,7 @@ public class AdventOfCode2020Data {
 
   public static void main(String args[]) {
 
-    int dayToCompute = 12;
+    int dayToCompute = 19;
 
     AoCChallenge day;
 
@@ -71,6 +71,42 @@ public class AdventOfCode2020Data {
         System.out.println("Solution to task 1: " + day.getTask1Solution());
         System.out.println("Solution to task 2: " + day.getTask2Solution());
         break;
+      case 13:
+        day = new Day13("Day13Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + ((Day13) day).getTask2SolutionAsLong());
+        break;
+      case 14:
+        day = new Day14("Day14Data.txt");
+        System.out.println("Solution to task 1: " + ((Day14) day).getTask1SolutionAsLong());
+        System.out.println("Solution to task 2: " + ((Day14) day).getTask2SolutionAsLong());
+        break;
+      case 15:
+        day = new Day15("Day15Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + day.getTask2Solution());
+        break;
+      case 16:
+        day = new Day16("Day16Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + ((Day16) day).getTask2SolutionAsLong());
+        break;
+      case 17:
+        day = new Day17("Day17Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + day.getTask2Solution());
+        break;
+      case 18:
+        day = new Day18("Day18Data.txt");
+        System.out.println("Solution to task 1: " + ((Day18) day).getTask1SolutionAsLong());
+        System.out.println("Solution to task 2: " + ((Day18) day).getTask2SolutionAsLong());
+        break;
+      case 19:
+        day = new Day19("Day19Data.txt");
+        System.out.println("Solution to task 1: " + day.getTask1Solution());
+        System.out.println("Solution to task 2: " + day.getTask2Solution());
+        break;
+
     }
   }
 
