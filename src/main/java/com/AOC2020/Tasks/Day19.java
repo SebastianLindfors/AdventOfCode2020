@@ -44,7 +44,7 @@ public @Data class Day19 extends AoCChallenge{
 
     System.out.println("Rules read in: " + messageRules.size());
 
-    String[] validMessages = messageRules.get("0").getValidStrings();
+    String[] validMessages = messageRules.get("0").getValidStringsRecursive();
 
 
     int totalValidMessages = 0;
@@ -91,9 +91,16 @@ public @Data class Day19 extends AoCChallenge{
 
     }
 
-    String[] getValidStrings() {
+    String[] getValidStringsRecursive() {
       if (validStrings.length == 0) {
         computeValidStringsArray();
+      }
+      return validStrings;
+    }
+
+    String[] getValidStringsNonRecursive() {
+      if (validStrings.length == 0) {
+        return null;
       }
       return validStrings;
     }
@@ -111,7 +118,7 @@ public @Data class Day19 extends AoCChallenge{
         String[][] subStrings = new String[subRuleStrings[i].length()][];
         for (int j = 0; j < subRuleStrings[i].length(); j++) { // 13
           //System.out.println("Key: " + subRuleStrings[i].substring(j,j+1));
-          subStrings[j] = rulesMap.get(subRuleStrings[i].substring(j,j+1)).getValidStrings();
+          subStrings[j] = rulesMap.get(subRuleStrings[i].substring(j,j+1)).getValidStringsRecursive();
           if (subStrings[j] == null) {
             System.out.println("NULLPOINTER EXCEPTION INCOMING, BITCHES");
           }
