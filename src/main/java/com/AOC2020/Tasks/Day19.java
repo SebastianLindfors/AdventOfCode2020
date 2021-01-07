@@ -93,7 +93,7 @@ public @Data class Day19 extends AoCChallenge{
 
     String[] getValidStringsRecursive() {
       if (validStrings.length == 0) {
-        computeValidStringsArray();
+        computeValidStringsArrayRecursive();
       }
       return validStrings;
     }
@@ -105,7 +105,18 @@ public @Data class Day19 extends AoCChallenge{
       return validStrings;
     }
 
-    private void computeValidStringsArray() {
+    private void computeValidStringsArrayNonRecursive() {
+
+      if (subRuleStrings[0].charAt(0) == '"') {
+        System.out.println("Returning: " + subRuleStrings[0].substring(1,2));
+        validStrings = new String[] { subRuleStrings[0].substring(1,2)};
+        return;
+      }
+
+    }
+
+
+    private void computeValidStringsArrayRecursive() {
 
       if (subRuleStrings[0].charAt(0) == '"') {
         System.out.println("Returning: " + subRuleStrings[0].substring(1,2));
