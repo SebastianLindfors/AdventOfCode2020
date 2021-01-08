@@ -113,6 +113,54 @@ public @Data class Day19 extends AoCChallenge{
         return;
       }
 
+      for (int i = 0; i < subRuleStrings.length; i++) { // 13 | 31
+
+        String[][] subStrings = new String[subRuleStrings[i].length()][];
+        for (int j = 0; j < subRuleStrings[i].length(); j++) { // 13
+          //System.out.println("Key: " + subRuleStrings[i].substring(j,j+1));
+          subStrings[j] = rulesMap.get(subRuleStrings[i].substring(j,j+1)).getValidStringsNonRecursive();
+          if (subStrings[j] == null) {
+            System.out.println("NULLPOINTER EXCEPTION INCOMING, BITCHES");
+          }
+        }
+
+        int product = 1;
+        for (int j = 0; j < subStrings.length; j++) {
+          product *= subStrings[j].length;
+        }
+
+        int[] counter = new int[subStrings.length];
+        String[] outputStrings = new String[product];
+        int outputPointer = 0;
+
+        boolean finished = false;
+        while(!finished) {
+
+          String outputString = "";
+          for (int j = 0; j < counter.length; j++) {
+            outputString += subStrings[j][counter[j]];
+          }
+          outputStrings[outputPointer++] = outputString;
+          System.out.println(outputString);
+
+          int counterPointer = counter.length - 1;
+          while(counterPointer >= 0) {
+            System.out.println("Pointer: " + counterPointer +", Counter: " + counter[counterPointer]);
+            counter[counterPointer]++;
+            if (counter[counterPointer] == subStrings[counterPointer].length) {
+              if (counterPointer == 0) {
+                finished = true;
+              }
+              counter[counterPointer] = 0;
+              counterPointer--;
+            }
+            else {
+              break;
+            }
+          }
+        }
+        validStrings = ArrayUtils.addAll(validStrings, outputStrings);
+      }
     }
 
 
