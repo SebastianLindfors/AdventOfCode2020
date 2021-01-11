@@ -5,7 +5,6 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 
 public @Data class Day19 extends AoCChallenge{
