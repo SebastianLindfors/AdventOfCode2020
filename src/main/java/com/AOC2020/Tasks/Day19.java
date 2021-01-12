@@ -43,11 +43,32 @@ public @Data class Day19 extends AoCChallenge{
 
     System.out.println("Rules read in: " + messageRules.size());
 
-    String[] validMessages = messageRules.get("0").getValidStringsRecursive();
+    while(messageRules.get("0").getValidStringsNonRecursive() == null) {
+
+      for ( MessageRule messageRule : messageRules.values())
+      {
+        if (messageRule.getValidStringsNonRecursive() == null) {
+          messageRule.computeValidStringsArrayNonRecursive();
+        }
+      }
+
+    }
+
+    String[] validMessages = messageRules.get("0").getValidStringsNonRecursive();
+    int validMessageLength = validMessages[0].length();
+
+    System.out.println("Printing All Possible Correct Messages");
+
+    for (String validMessage : validMessages) {
+      System.out.println(validMessage);
+    }
 
 
     int totalValidMessages = 0;
     for (String message : messageLines) {
+      if (message.length() != validMessageLength) {
+        continue;
+      }
       for (String ruleString : validMessages) {
         if (message.equals(ruleString)) {
           totalValidMessages++;
@@ -84,7 +105,12 @@ public @Data class Day19 extends AoCChallenge{
       int spaceIndex = newRuleString.indexOf(" ");
 
       ruleId = newRuleString.substring(0,spaceIndex - 1);
-      subRuleStrings = newRuleString.substring(3).replaceAll("\\s+", "").split("\\|");
+
+      subRuleStrings = newRuleString.substring(spaceIndex).split("\\|");
+
+      for (int i = 0; i < subRuleStrings.length; i++) {
+        subRuleStrings[i] = subRuleStrings[i].strip();
+      }
 
       rulesMap.put(ruleId, this);
 
@@ -107,20 +133,39 @@ public @Data class Day19 extends AoCChallenge{
     private void computeValidStringsArrayNonRecursive() {
 
       if (subRuleStrings[0].charAt(0) == '"') {
-        System.out.println("Returning: " + subRuleStrings[0].substring(1,2));
         validStrings = new String[] { subRuleStrings[0].substring(1,2)};
         return;
       }
 
-      for (int i = 0; i < subRuleStrings.length; i++) { // 13 | 31
+      for (int i = 0; i < subRuleStrings.length; i++) { // 1 3 | 3 1
 
-        String[][] subStrings = new String[subRuleStrings[i].length()][];
-        for (int j = 0; j < subRuleStrings[i].length(); j++) { // 13
-          //System.out.println("Key: " + subRuleStrings[i].substring(j,j+1));
-          subStrings[j] = rulesMap.get(subRuleStrings[i].substring(j,j+1)).getValidStringsNonRecursive();
-          if (subStrings[j] == null) {
-            System.out.println("NULLPOINTER EXCEPTION INCOMING, BITCHES");
+        int neededLength = (int) subRuleStrings[i].chars().filter(ch -> ch == ' ').count();
+        String[][] subStrings = new String[neededLength + 1][];
+        int subRuleStringIndex = 0;
+        int substringCounter = 0;
+        while (subRuleStringIndex < subRuleStrings[i].length()) { // 1 3
+          int nexSpaceIndex = subRuleStrings[i].indexOf(" ", subRuleStringIndex);
+
+          if (nexSpaceIndex != -1) {
+            subStrings[substringCounter] = rulesMap.get(subRuleStrings[i].substring(subRuleStringIndex, nexSpaceIndex)).getValidStringsNonRecursive();
           }
+          else {
+            subStrings[substringCounter] = rulesMap.get(subRuleStrings[i].substring(subRuleStringIndex)).getValidStringsNonRecursive();
+          }
+
+          if (subStrings[substringCounter] == null) {
+            return;
+          }
+          else {
+            substringCounter++;
+          }
+
+
+          if (nexSpaceIndex == -1) {
+            break;
+          }
+
+          subRuleStringIndex = nexSpaceIndex + 1;
         }
 
         int product = 1;
@@ -144,7 +189,6 @@ public @Data class Day19 extends AoCChallenge{
 
           int counterPointer = counter.length - 1;
           while(counterPointer >= 0) {
-            System.out.println("Pointer: " + counterPointer +", Counter: " + counter[counterPointer]);
             counter[counterPointer]++;
             if (counter[counterPointer] == subStrings[counterPointer].length) {
               if (counterPointer == 0) {
