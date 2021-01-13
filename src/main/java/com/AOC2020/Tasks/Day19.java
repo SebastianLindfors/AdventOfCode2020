@@ -48,6 +48,7 @@ public @Data class Day19 extends AoCChallenge{
       for ( MessageRule messageRule : messageRules.values())
       {
         if (messageRule.getValidStringsNonRecursive() == null) {
+          System.out.println("Attempting to create strings for rule " + messageRule.ruleId);
           messageRule.computeValidStringsArrayNonRecursive();
         }
       }
@@ -56,13 +57,6 @@ public @Data class Day19 extends AoCChallenge{
 
     String[] validMessages = messageRules.get("0").getValidStringsNonRecursive();
     int validMessageLength = validMessages[0].length();
-
-    System.out.println("Printing All Possible Correct Messages");
-
-    for (String validMessage : validMessages) {
-      System.out.println(validMessage);
-    }
-
 
     int totalValidMessages = 0;
     for (String message : messageLines) {
@@ -97,6 +91,7 @@ public @Data class Day19 extends AoCChallenge{
 
     String[] subRuleStrings;
     String [] validStrings = new String[0];
+
 
     MessageRule(String newRuleString, HashMap<String, MessageRule> rulesMap) {
 
@@ -137,7 +132,11 @@ public @Data class Day19 extends AoCChallenge{
         return;
       }
 
+      String [] tempValidStrings = new String[0];
+
       for (int i = 0; i < subRuleStrings.length; i++) { // 1 3 | 3 1
+
+        System.out.println("TESTING: " + subRuleStrings[i]);
 
         int neededLength = (int) subRuleStrings[i].chars().filter(ch -> ch == ' ').count();
         String[][] subStrings = new String[neededLength + 1][];
@@ -148,18 +147,19 @@ public @Data class Day19 extends AoCChallenge{
 
           if (nexSpaceIndex != -1) {
             subStrings[substringCounter] = rulesMap.get(subRuleStrings[i].substring(subRuleStringIndex, nexSpaceIndex)).getValidStringsNonRecursive();
+            if (subStrings[substringCounter] == null) {
+              System.out.println("Rule " + subRuleStrings[i].substring(subRuleStringIndex, nexSpaceIndex) + " not established, continuing...");
+              return;
+            }
           }
           else {
             subStrings[substringCounter] = rulesMap.get(subRuleStrings[i].substring(subRuleStringIndex)).getValidStringsNonRecursive();
+            if (subStrings[substringCounter] == null) {
+              System.out.println("Rule " + subRuleStrings[i].substring(subRuleStringIndex) + " not established, continuing...");
+              return;
+            }
           }
-
-          if (subStrings[substringCounter] == null) {
-            return;
-          }
-          else {
-            substringCounter++;
-          }
-
+          substringCounter++;
 
           if (nexSpaceIndex == -1) {
             break;
@@ -185,7 +185,7 @@ public @Data class Day19 extends AoCChallenge{
             outputString += subStrings[j][counter[j]];
           }
           outputStrings[outputPointer++] = outputString;
-          System.out.println(outputString);
+          //System.out.println(outputString);
 
           int counterPointer = counter.length - 1;
           while(counterPointer >= 0) {
@@ -202,8 +202,10 @@ public @Data class Day19 extends AoCChallenge{
             }
           }
         }
-        validStrings = ArrayUtils.addAll(validStrings, outputStrings);
+        tempValidStrings = ArrayUtils.addAll(tempValidStrings, outputStrings);
       }
+
+      validStrings = tempValidStrings;
     }
 
 

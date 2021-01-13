@@ -31,4 +31,15 @@ class Day19Test {
     Assertions.assertEquals(expected, challenge.getTask1Solution());
   }
 
+  @Test
+  void Part19FinalAnswer1Test3_shouldBe2() {
+
+    challenge = new Day19("ExampleData/Day19Example3.txt", true);
+
+    //Correct answer given by AoC page.
+    int expected = 2;
+
+    Assertions.assertEquals(expected, challenge.getTask1Solution());
+  }
+
 }
