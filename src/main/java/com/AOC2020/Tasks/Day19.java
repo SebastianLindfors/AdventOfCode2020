@@ -69,10 +69,6 @@ public @Data class Day19 extends AoCChallenge{
       task1Solution = totalValidMessages;
     }
 
-
-
-
-
   }
 
   @Override
@@ -124,13 +120,13 @@ public @Data class Day19 extends AoCChallenge{
 
       String [] tempValidStrings = new String[0];
 
-      for (int i = 0; i < subRuleStrings.length; i++) { // 1 3 | 3 1
+      for (int i = 0; i < subRuleStrings.length; i++) {
 
         int neededLength = (int) subRuleStrings[i].chars().filter(ch -> ch == ' ').count();
         String[][] subStrings = new String[neededLength + 1][];
         int subRuleStringIndex = 0;
         int substringCounter = 0;
-        while (subRuleStringIndex < subRuleStrings[i].length()) { // 1 3
+        while (subRuleStringIndex < subRuleStrings[i].length()) {
           int nexSpaceIndex = subRuleStrings[i].indexOf(" ", subRuleStringIndex);
 
           if (nexSpaceIndex != -1) {
@@ -171,7 +167,6 @@ public @Data class Day19 extends AoCChallenge{
             outputString += subStrings[j][counter[j]];
           }
           outputStrings[outputPointer++] = outputString;
-          //System.out.println(outputString);
 
           int counterPointer = counter.length - 1;
           while(counterPointer >= 0) {
