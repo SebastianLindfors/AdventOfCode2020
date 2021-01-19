@@ -74,6 +74,16 @@ public @Data class Day19 extends AoCChallenge{
   @Override
   protected void computeSolutionToTask2() {
 
+    String[] inputData = fileReader.getInputDataAsLineArray();
+
+    int breakPoint = -1;
+    for (int i = 0; i < inputData.length; i++) {
+      if (inputData[i].equals("")) {
+        breakPoint = i;
+        break;
+      }
+    }
+
   }
 
   private class MessageRule {

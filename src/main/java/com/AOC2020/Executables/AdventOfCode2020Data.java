@@ -103,6 +103,7 @@ public class AdventOfCode2020Data {
         break;
       case 19:
         day = new Day19("Day19Data.txt");
+        AoCChallenge day2 = new Day19("Day19Data2.txt");
         System.out.println("Solution to task 1: " + day.getTask1Solution());
         System.out.println("Solution to task 2: " + day.getTask2Solution());
         break;
