@@ -84,6 +84,14 @@ public @Data class Day19 extends AoCChallenge{
       }
     }
 
+    String[] ruleLines = Arrays.copyOfRange(inputData, 0, breakPoint);
+    String[] messageLines = Arrays.copyOfRange(inputData, breakPoint + 1, inputData.length);
+
+    HashMap<String, MessageRule> messageRules = new HashMap<>();
+    for (String ruleLine : ruleLines) {
+      new MessageRule(ruleLine, messageRules);
+    }
+
   }
 
   private class MessageRule {
