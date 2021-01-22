@@ -66,9 +66,9 @@ public @Data class Day19 extends AoCChallenge{
         }
       }
 
-      task1Solution = totalValidMessages;
-    }
 
+    }
+    task1Solution = totalValidMessages;
   }
 
   @Override
@@ -92,6 +92,22 @@ public @Data class Day19 extends AoCChallenge{
       new MessageRule(ruleLine, messageRules);
     }
 
+    String[] validMessages = messageRules.get("0").getValidStringsNonRecursive();
+    int validMessageLength = validMessages[0].length();
+
+    int totalValidMessages = 0;
+    for (String message : messageLines) {
+      if (message.length() != validMessageLength) {
+        continue;
+      }
+      for (String ruleString : validMessages) {
+        if (message.equals(ruleString)) {
+          totalValidMessages++;
+        }
+      }
+    }
+
+    task2Solution = totalValidMessages;
   }
 
   private class MessageRule {
